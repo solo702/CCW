@@ -1,0 +1,47 @@
+@WebMethod(operationName = "add") 
+public String add(@WebParam(name = "a") float a, 
+                 @WebParam(name = "b") float b) { 
+ 
+   float sum = a + b; 
+   return "Addition is : " + sum;
+
+   Step 8: Write Code in Input.jsp 
+<body> 
+   <form action="Output.jsp" method="get"> 
+       <pre> 
+Enter First Value  : <input type="text" name="v1"> 
+ 
+Enter Second Value : <input type="text" name="v2"> 
+ 
+<input type="submit" value="Submit"> 
+<input type="reset"  value="Reset"> 
+       </pre> 
+   </form> 
+</body> 
+
+Step 10: Write Code in Output.jsp 
+<% 
+try { 
+   float a = Float.parseFloat(request.getParameter("v1")); 
+   float b = Float.parseFloat(request.getParameter("v2")); 
+ 
+   Clinet.Add_Service service = new Clinet.Add_Service(); 
+   Clinet.Add port = service.getAddPort(); 
+ 
+   String result = port.add(a, b); 
+ 
+   out.println("Result = " + result); 
+ 
+} catch (Exception ex) { 
+   out.println("Error : " + ex.getMessage()); 
+} 
+%>
+
+
+from zeep import Client
+
+wsdl_url = 'http://localhost:8080/addition/add?wsdl'
+client = Client(wsdl_url)
+
+result = client.service.add(12, 19)
+print(result)
