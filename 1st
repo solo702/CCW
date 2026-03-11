@@ -1,0 +1,32 @@
+
+ @WebMethod(operationName = "operation") 
+    public String operation(@WebParam(name = "a") double a) { 
+        //TODO write your implementation code here: 
+        return "rupees in to"+a+"Dollor"+(a/88.64); 
+
+
+         <body> 
+        <form action="output.jsp"> 
+            <pre> 
+Enter the Currency in rupees : <input type="text" name="t1"> 
+<input type="submit"><input type="rest"> 
+</form> 
+    </body> 
+
+
+
+    <body> 
+      <% 
+    try { 
+        Client.Currency_Service service = new Client.Currency_Service(); 
+        Client.Currency port = service.getCurrencyPort(); 
+        // TODO initialize WS operation arguments here 
+        double a = Double.parseDouble(request.getParameter("t1")); 
+        // TODO process result here 
+        java.lang.String result = port.operation(a); 
+        out.println("Result  "+result); 
+    } catch (Exception ex) { 
+        // TODO handle custom exceptions here 
+    } 
+%> 
+    </body> 
